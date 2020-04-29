@@ -1,0 +1,38 @@
+.contact {
+  padding: 10%;
+  text-align: center;
+  color: #424242;
+}
+.contactHeader {
+  margin: 0 auto;
+  width: 80%;
+}
+.signature {
+  font-family: "Comfortaa", cursive;
+  font-family: "Sacramento", cursive;
+  text-align: right;
+  font-size: 40px;
+  width: 100%;
+  margin-top: 40px;
+}
+.contactList {
+  margin: 0 auto;
+  padding: 30px;
+  width: 80%;
+  text-align: left;
+}
+
+.icon {
+  transform: translateY(7px);
+  padding: 10px;
+  font-size: 40px;
+  margin-right: 20px;
+}
+.contactLink {
+  text-decoration: none;
+  color: #424242;
+}
+.contactLink:hover {
+  text-decoration: none;
+  color: #ed2d2d;
+}

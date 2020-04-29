@@ -1,0 +1,33 @@
+.main ul li {
+  text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  width:25%
+}
+
+nav.main a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+}
+
+nav.main a:hover {
+  color: #A21310;
+}
+
+nav.main a.active {
+  color: black;
+
+}
+
+.navigation {
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main{
+  width: 60%;
+  margin: 0 auto;
+}

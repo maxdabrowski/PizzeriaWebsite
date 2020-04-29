@@ -1,0 +1,24 @@
+h1 {
+  display: table;
+  font-size: 17px;
+  width: 27%;
+  margin: 0 auto;
+  text-align: left;
+}
+.skills {
+  padding: 10%;
+  text-align: center;
+  font-family: "Comfortaa", cursive;
+  color: #424242;
+}
+.imgSkills {
+  width: 30%;
+}
+.skillsFooter {
+  margin: 0 auto;
+  width: 80%;
+  font-size: 20px;
+}
+.skillsItem {
+  margin-bottom: 25px;
+}

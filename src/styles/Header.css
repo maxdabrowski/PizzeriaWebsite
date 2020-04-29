@@ -1,0 +1,16 @@
+.title{
+  font-size: 200px;
+  font-family: 'Amatic SC', cursive;
+  color: black;
+}
+header a{
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  background-color: #A21310;
+  padding: 12px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border-radius: 7px;
+
+}

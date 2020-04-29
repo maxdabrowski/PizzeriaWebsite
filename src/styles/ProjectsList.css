@@ -1,0 +1,17 @@
+.products {
+  padding: 10%;
+  text-align: center;
+  color: #424242;
+}
+.gitHub {
+  text-decoration: none;
+  color: #ed2d2d;
+}
+.gitHub:hover {
+  font-weight: bold;
+}
+.projectsFooter {
+  margin: 0 auto;
+  width: 80%;
+  font-size: 20px;
+}

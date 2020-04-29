@@ -1,0 +1,12 @@
+.aboutMe {
+  padding: 10%;
+  text-align: center;
+}
+.imgAboutMe {
+  padding: 20px;
+  width: 50%;
+}
+i {
+  line-height: 200%;
+  font-style: italic;
+}
