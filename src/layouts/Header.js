@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-        <div class='title'>Cessare Pizza</div>
-        <Link to="/order">Zamów online</Link>
+        <div className='title'>Cessare Pizza</div>
+        <Link to="/menu">Zamów online</Link>
     </>
   );
 };

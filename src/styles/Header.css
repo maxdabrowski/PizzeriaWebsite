@@ -8,9 +8,15 @@ header a{
   color: white;
   font-size: 25px;
   background-color: #A21310;
-  padding: 12px;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
   border-radius: 7px;
+  opacity: 0.8;
+  border: 1px solid black ;
+}
 
+header a:hover{
+  color: white;
+  background-color: black;
 }

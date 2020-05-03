@@ -32,3 +32,6 @@ section {
 li {
   list-style-type: none;
 }
+.page{
+  min-height: 500px;
+}
