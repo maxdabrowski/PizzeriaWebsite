@@ -1,10 +1,9 @@
-
 .contact div {
 width: 33%;
 }
 .contact{
   display: flex;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 } 
 
@@ -25,5 +24,5 @@ table tr td{
 
 iframe{
   width: 100%;
-  height: 400px;
+  height: 450px;
 }
