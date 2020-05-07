@@ -1,5 +1,5 @@
-export const ADD_PIZZA = "ADD_PIZZAs";
-export const ADD_DRINK = "ADD_DRINKs";
+export const ADD_PIZZA = "ADD_PIZZA";
+export const ADD_DRINK = "ADD_DRINK";
 
 
 const initialState = {
@@ -29,10 +29,3 @@ export default (state = initialState, action) => {
     }
   }
 };
-
-/*export const addPizza = (pizza) => dispatch => {
-  dispatch({type: ADD_PIZZA, payload: pizza});
-}
-export const addDrink = (drink) => dispatch => {
-  dispatch({type: ADD_DRINK, payload: drink});
-}*/
