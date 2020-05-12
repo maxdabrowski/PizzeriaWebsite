@@ -7,6 +7,7 @@ const Contact = () => {
       <div>
         <h1>GODZINY OTWARCIA</h1>
         <table>
+          <tbody>
           <tr>
             <td>Poniedziałek</td>
             <td>11:00 - 21:00</td>
@@ -35,6 +36,7 @@ const Contact = () => {
             <td>Niedziela</td>
             <td>11:00 - 21:00</td>
           </tr>
+          </tbody>
         </table>
       </div>
       <div>

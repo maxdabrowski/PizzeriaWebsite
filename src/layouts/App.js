@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import Page from "./Page";
-
 import { useEffect } from "react";
 import {useDispatch} from "react-redux";
 import{ADD_DRINK,ADD_PIZZA} from "../store/menu";
@@ -12,9 +11,7 @@ import{ADD_DRINK,ADD_PIZZA} from "../store/menu";
 const App = () => {
 
   const dispatch = useDispatch();
- // const pizzas = useSelector(state => state.menu.pizzas);
- // const drinks = useSelector(state => state.menu.drinks);
-
+  
   //pobranie i dodanie do Stora pizzy z API 
   useEffect(()=>{
     fetch('https://cessarepizza.herokuapp.com/menu/pizza')
@@ -46,7 +43,7 @@ const App = () => {
           dispatch({type:ADD_DRINK, payload: data})  
       })
   });
-  
+
   return (
     <Router>
       <div className="app">

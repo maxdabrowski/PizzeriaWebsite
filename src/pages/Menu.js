@@ -1,70 +1,48 @@
-import React, { useEffect } from "react";
-import {useDispatch, useSelector} from "react-redux";
-import "../styles/ProjectsList.css";
-import{ADD_DRINK,ADD_PIZZA} from "../store/menu";
+import React from "react";
+import {useSelector} from "react-redux";
+import "../styles/Menu.css";
 import Pizza from "./Pizza";
 import Drink from "./Drink";
-
-//import Project from "./Project";
+import Cart from "./Cart";
 
 const Menu = () =>{ 
 
-  //const dispatch = useDispatch();
- // const pizzas = useSelector(state => state.menu.pizzas);
- // const drinks = useSelector(state => state.menu.drinks);
-
-  //pobranie i dodanie do Stora pizzy z API 
-  /*useEffect(()=>{
-    fetch('https://cessarepizza.herokuapp.com/menu/pizza')
-    .then(response => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error("bład wyszukiwania");
-      })
-      .then(response => {
-        return response.json()})
-      .then(data =>{
-          dispatch({type:ADD_PIZZA, payload: data})  
-      })
-  });
-
-  //pobranie i dodanie do Stora napojów z API 
-  useEffect(()=>{
-    fetch('https://cessarepizza.herokuapp.com/menu/drink')
-    .then(response => {
-        if (response.ok) {
-          return response;
-        }
-        throw Error("bład wyszukiwania");
-      })
-      .then(response => {
-        return response.json()})
-      .then(data =>{
-          dispatch({type:ADD_DRINK, payload: data})  
-      })
-  });*/
-
+    //pobranie stanów ze Stpra
     const pizzas = useSelector(state => state.menu.pizzas);
     const drinks = useSelector(state => state.menu.drinks);
-    console.log(pizzas);
-    console.log(drinks);
-   /* const pizzasList = pizzas.map(onePizza => (
+  
+    // lista pizzy
+    const pizzasList = pizzas.map(onePizza => (
       <li key={onePizza._id}>
         <Pizza pizza={onePizza} />
       </li>
     ));
 
+    // lista napojów
     const drinksList = drinks.map(oneDrink => (
       <li key={oneDrink._id}>
         <Drink drink={oneDrink} />
       </li>
     ));
-*/
+
   return (
-    <div className="products">
-      <p className="projectsFooter">pizze kurła</p>
-      <p className="projectsFooter">napoje kurła</p>
+    <div className="menu">
+      <h1>NASZE MENU </h1>
+      <div className="menuInsite">
+        <div className="menuList">
+          <div className='menuNav'>
+            <a href="#pizzaList" className="pizzaNav">MENU PIZZE</a>
+            <a href="#drinkList" className="drinkNav">MENU NAPOJE</a>
+          </div>
+          <p className="headerList bold" id="pizzaList">MENU PIZZA</p>
+            <ul>{pizzasList}</ul>
+          <p className="headerList bold" id="drinkList" >MENU NAPOJE</p>
+            <ul>{drinksList}</ul>
+        </div>
+        <div className="cart">
+          <Cart/>
+        </div>
+      </div>
     </div>
   );
 };

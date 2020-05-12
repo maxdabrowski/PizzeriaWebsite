@@ -1,56 +1,17 @@
-.project {
-  border-bottom: 1px solid #424242;
-  margin-bottom: 20px;
-  padding: 20px;
+.products {
+  padding: 10%;
+  text-align: center;
+  color: #424242;
 }
-.name {
-  font-size: 25px;
-  font-weight: bold;
-}
-.description {
-  margin: 0 auto;
-  width: 70%;
-  font-size: 20px;
-  font-style: italic;
-}
-.imgProject {
-  width: 40%;
-  margin: 0 auto;
-}
-.linkProject {
+.gitHub {
   text-decoration: none;
-  margin: 0 auto;
-  display: block;
-  font-size: 25px;
-  padding: 20px;
   color: #ed2d2d;
 }
-
-.linkProject:hover {
+.gitHub:hover {
   font-weight: bold;
-  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
 }
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(-3px, 0, 0);
-  }
-
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
-  }
+.projectsFooter {
+  margin: 0 auto;
+  width: 80%;
+  font-size: 20px;
 }

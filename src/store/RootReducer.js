@@ -1,10 +1,9 @@
 import {combineReducers} from "redux";
-//import reducer from "./reducer";
 import menu from "./menu";
-
+import order from "./order";
 const rootReducer = combineReducers({
-  menu
-  //po przecinku kolejne reducery 
+  menu,
+  order
 });
 
 export default rootReducer;

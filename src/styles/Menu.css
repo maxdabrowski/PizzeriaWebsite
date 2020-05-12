@@ -1,0 +1,141 @@
+/*style dla całego menu*/
+.menu{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.menuInsite{
+  display: flex;
+}
+
+.menu h1{
+  font-size: 30px;
+}
+
+.menuNav a{
+  text-decoration: none;
+  color: black;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.pizzaNav:hover{
+  color:#A21310;
+}
+
+.drinkNav:hover{
+  color:#A21310;
+}
+
+.menuList{
+  width: 60%;
+}
+.menuList ul {
+  padding: 0;
+}
+
+.cart{
+  width: 30%;
+}
+
+.bold{
+  font-weight: bold;
+  text-decoration: underline;
+  ;
+}
+
+.headerList{
+  font-size: 20px;
+  padding: 20px;
+}
+
+/*style dla poszczególnych elementów listy*/
+.elementName{
+  font-size: 23px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.elementIngr{
+  font-size: 16px;
+
+  color: rgb(141, 139, 139);
+}
+
+.element{
+  margin-bottom: 30px;
+}
+ 
+.element hr{
+  color: rgb(141, 139, 139);
+  margin-right: 120px;
+  margin-left: 120px;
+}
+
+.row{
+height: 30px;
+}
+
+.row:hover{
+  color: #A21310;
+}
+
+.fa-plus-square{
+  color: rgb(5, 80, 5);
+  font-size: 25px;
+  transition: all .2s ease-in-out; 
+
+}
+.fa-plus-square:hover{
+  color: #A21310;
+transform: scale(1.4);
+cursor: pointer;
+}
+
+/*style dla koszyka*/
+
+.cartList{
+  border: 1px solid black;
+ /*position: absolute;*/
+}
+
+.cartDescript {
+  font-size: 15px;
+  margin-bottom: 20px;
+  margin-left:5px;
+  margin-right:5px;
+}
+
+.cartList table{
+  width: 100%;
+}
+.cartBold{
+  font-weight: bold;
+}
+.summaryCart{
+  display: flex;
+  margin-top: 20px;
+}
+.summaryCart button{
+  width: 50%;
+}
+.summaryCart p{
+  width: 50%;
+  margin:0;
+  padding: 10px;
+  border-top: 1px solid black;
+}
+
+.button{
+  padding: 3px;
+  width:50%;
+  background-color: rgb(141, 139, 139);
+  color: white;
+}
+
+.button:hover{
+  background-color:#A21310;
+  cursor: pointer;
+}
+

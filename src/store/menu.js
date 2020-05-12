@@ -1,7 +1,6 @@
 export const ADD_PIZZA = "ADD_PIZZA";
 export const ADD_DRINK = "ADD_DRINK";
 
-
 const initialState = {
   pizzas: [], 
   drinks: []
