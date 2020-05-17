@@ -34,3 +34,7 @@ li {
 .page{
   min-height: 500px;
 }
+
+a{
+  text-decoration: none;
+}

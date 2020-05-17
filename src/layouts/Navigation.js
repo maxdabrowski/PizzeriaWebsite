@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "../styles/Navigation.css";
 
 const list = [
@@ -22,6 +22,7 @@ const Navigation = () => {
       <nav className="main">
         <ul>{menu}</ul>
       </nav>
+      <Link to="/login"><p className="loginButon">Zaloguj się</p></Link>
     </div>
   );
 };

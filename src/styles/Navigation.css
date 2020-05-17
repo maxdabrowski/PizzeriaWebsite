@@ -31,3 +31,19 @@ nav.main a.active {
   width: 60%;
   margin: 0 auto;
 }
+
+
+.loginButon{
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding:10px;
+  border: 1px solid black;
+  margin-right: 15px;
+}
+
+.loginButon:hover{
+  opacity: 0.8;
+  background-color: black;
+  cursor: pointer;
+}

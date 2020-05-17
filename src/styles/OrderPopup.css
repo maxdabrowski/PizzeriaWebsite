@@ -1,0 +1,40 @@
+.modalOrder{
+  padding:20px
+}
+
+.modalOrder p {
+  width: 100% !important;
+  border: none !important;
+  padding: 0px;
+  margin-bottom: 15px !important;
+  margin-top: 15px !important;
+}
+
+.modalOrder button{
+  padding:7px;
+  padding-left:15px;
+  padding-right: 15px;
+  border:none;
+  border-radius: 3px;
+}
+
+.modalOrder tr{
+  height: 35px;
+}
+
+.modalOrder td{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.orderSauce{
+  color: rgb(5, 80, 5);
+  font-size: 25px;
+  transition: all .2s ease-in-out; 
+}
+
+.orderSauce:hover{
+color: #A21310;
+cursor: pointer;
+}
