@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import {useSelector} from "react-redux";
 import "../styles/Navigation.css";
+
 
 const list = [
   { name: "O NAS", path: "/", exact: true },
@@ -10,6 +12,11 @@ const list = [
 ];
 
 const Navigation = () => {
+  
+  const user = useSelector(state => state.user);
+  const LogIn = user.logIn;
+  const nick = user.loginUser.firstName + ' ' + user.loginUser.lastName;
+
   const menu = list.map(item => (
     <li key={item.name}>
       <NavLink to={item.path} exact={item.exact ? item.exact : false}>
@@ -22,7 +29,11 @@ const Navigation = () => {
       <nav className="main">
         <ul>{menu}</ul>
       </nav>
-      <Link to="/login"><p className="loginButon">Zaloguj się</p></Link>
+      {LogIn?
+      <Link to="/user"><p className="loginButon">{nick}</p></Link>
+    :
+    <Link to="/login"><p className="loginButon">Zaloguj się</p></Link>
+      }
     </div>
   );
 };
