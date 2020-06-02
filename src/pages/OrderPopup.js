@@ -1,11 +1,13 @@
 import React from "react";
 import "../styles/OrderPopup.css";
 import {useSelector, useDispatch} from "react-redux";
-import { DELETE_PIZZA_ORDER, DELETE_DRINK_ORDER, SET_SAUCE} from "../store/order";
+import { DELETE_PIZZA_ORDER, DELETE_DRINK_ORDER, SET_SAUCE, SET_ORDER_ERROR, SET_ORDER_MESSAGE, SET_USER_ID, SET_INITIAL_ORDER} from "../store/order";
+import { USER_ORDER } from "../store/user";
 
 const OrderPopup = () => {
   //pobranie store.order
   const order = useSelector(state => state.order);
+  const user = useSelector(state => state.user);
 
   //deklaracja zmiennych
   let pizzasList;
@@ -72,6 +74,34 @@ const OrderPopup = () => {
     dispatch({type:SET_SAUCE, payload: actionType})
   };
 
+  //dodawanie wiadomości z textarea do stora
+  const changeMessage = (e) => {
+    dispatch({type: SET_ORDER_MESSAGE, payload:e.target.value})
+  };
+
+  const makeOrder = async e => {
+
+    if(user.logIn){
+    const response = await fetch('http://localhost:3000/api/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({order}),
+    });
+    const body = await response.json();
+    dispatch({type:USER_ORDER, payload: body.orders})
+    console.log(body)
+    dispatch({type:SET_INITIAL_ORDER})
+
+    }else{
+      dispatch({type:SET_ORDER_ERROR, payload: 'Zaloguj się lub załóż nowe konto aby złożyć zamówienie'})
+      console.log("niezalogowany")
+    }
+  };
+
+
+
   //jeżeli sosów jest więcej niż 2 x ilość sztuk pizzy to zwiększamy cene zs dodatkowy sos 3 zł
   if((order.sauce[0] + order.sauce[1]) > (order.pizzaOrder.length*2)){
     const saucePrice =  ((order.sauce[0] + order.sauce[1]) - (order.pizzaOrder.length*2))*3;
@@ -81,7 +111,7 @@ const OrderPopup = () => {
   return(
     <div className='modalOrder'>
       <p className="cartBold">TWOJE ZAMÓWIENIE</p>
-      <p className="cartDescript">Do każdego zamóWienia doliczamy koszT dostawy w wysokości 5zł</p>
+      <p className="cartDescript">Do każdego zamóWienia doliczamy koszt dostawy w wysokości 5zł</p>
       <table>
         <tbody>
         <tr>
@@ -113,8 +143,11 @@ const OrderPopup = () => {
         </table>
         </div>
         <div className="summaryOrderPopup">
+        <p className="cartDescript"> Jeżeli masz jakieś życzenia, uwagi napisz je tutaj:</p>
+        <textarea className="orderTextarea" onChange={(e) => changeMessage(e)}></textarea>  
           <p className="cartBold">SUMA: {summaryPrice} zł</p>
-          <button className="button">ZAMAWIAM</button>
+          <button className="button" onClick={() => makeOrder()}>ZAMAWIAM</button>
+  <p className="loginError">{order.orderError}</p>
           </div>
     </div>
   );

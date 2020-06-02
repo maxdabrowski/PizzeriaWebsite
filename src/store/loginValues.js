@@ -1,5 +1,6 @@
 export const SET_LOGIN_NAME = "SET_LOGIN_NAME";
 export const SET_LOGIN_PASSWORD = "SET_LOGIN_PASSWORD";
+export const SET_INITIAL_LOGIN = "SET_INITIAL_LOGIN";
 export const SET_LOGIN_ERROR = "SET_LOGIN_ERROR";
 
 const initialState = {
@@ -21,6 +22,13 @@ export default (state = initialState, action) => {
       return{
         ...state,
         password: setLoginPassword,
+      };
+    }case SET_INITIAL_LOGIN: {
+      return{
+        ...state,
+        name : '',
+        password: '',
+        error:''
       };
     } case SET_LOGIN_ERROR: {
       const setLoginError = action.payload;

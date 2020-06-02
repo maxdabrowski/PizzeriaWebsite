@@ -3,7 +3,9 @@ import "../styles/Login.css";
 import { Link, useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { LOGIN_USER } from "../store/user";
-import { SET_LOGIN_NAME, SET_LOGIN_PASSWORD , SET_LOGIN_ERROR} from "../store/loginValues";
+import { SET_LOGIN_NAME, SET_LOGIN_PASSWORD,SET_INITIAL_LOGIN, SET_LOGIN_ERROR} from "../store/loginValues";
+import { SET_ORDER_ERROR,SET_USER_ID } from "../store/order";
+
 
 const Login= () => {
 
@@ -43,7 +45,10 @@ const Login= () => {
       dispatch({type: SET_LOGIN_ERROR, payload:'błędne hasło'});
     }else if(body.error === 'none'){
       dispatch({type: SET_LOGIN_ERROR, payload:''});
-      dispatch({type: LOGIN_USER, payload:body.user[0]});
+      dispatch({type: LOGIN_USER, payload:body});
+      dispatch({type:SET_USER_ID, payload: body.user[0]._id })
+      dispatch({type: SET_INITIAL_LOGIN});
+      dispatch({type:SET_ORDER_ERROR, payload: ''})
       history.push("/menu");
     }
   };
