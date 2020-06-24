@@ -4,13 +4,15 @@ import order from "./order";
 import user from "./user";
 import loginValues from "./loginValues";
 import newUserValues from "./newUserValues";
+import opinion from "./opinion";
 
 const rootReducer = combineReducers({
   menu,
   order,
   user,
   loginValues,
-  newUserValues
+  newUserValues,
+  opinion
 });
 
 export default rootReducer;

@@ -1,11 +1,11 @@
 import React from "react";
-import "../styles/Login.css";
+import "../../styles/Login.css";
 import { Link, useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { LOGIN_USER } from "../store/user";
-import { SET_LOGIN_NAME, SET_LOGIN_PASSWORD,SET_INITIAL_LOGIN, SET_LOGIN_ERROR} from "../store/loginValues";
-import { SET_ORDER_ERROR,SET_USER_ID } from "../store/order";
-
+import { LOGIN_USER } from "../../store/user";
+import { SET_LOGIN_NAME, SET_LOGIN_PASSWORD,SET_INITIAL_LOGIN, SET_LOGIN_ERROR} from "../../store/loginValues";
+import { SET_ORDER_ERROR,SET_USER_ID } from "../../store/order";
+import { SET_OPINION_ERROR } from "../../store/opinion";
 
 const Login= () => {
 
@@ -13,12 +13,13 @@ const Login= () => {
   const dispatch = useDispatch();
   const login = useSelector(state => state.loginValues);
 
+  //obiekt usera wysyłany do API
   const userToLogin = {
     name: login.name,
     password:login.password
   };
 
-  //ustawianie wpisywanych wartości w nazwie i haśle do Stora
+  //ustawianie wpisywanych wartości w nazwa i hasło do stora
   const loginHandle = (e, type) => {
     if(type ==='name'){
       dispatch({type: SET_LOGIN_NAME, payload:e.target.value})
@@ -30,7 +31,7 @@ const Login= () => {
   //wysyłanie danych do API
   const loginSubmit = async e => {
     e.preventDefault();
-    const response = await fetch('http://localhost:3000/api/login_user', {
+    const response = await fetch('https://cessarepizza.herokuapp.com/api/login_user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,6 +50,7 @@ const Login= () => {
       dispatch({type:SET_USER_ID, payload: body.user[0]._id })
       dispatch({type: SET_INITIAL_LOGIN});
       dispatch({type:SET_ORDER_ERROR, payload: ''})
+      dispatch({type:SET_OPINION_ERROR, payload: ''})
       history.push("/menu");
     }
   };
@@ -64,7 +66,7 @@ const Login= () => {
             <label>Hasło:</label>
             <input type='password' value={login.password} onChange={(e) => loginHandle(e, 'password')}></input>
           </div>
-          <input type='submit' className="button" value="Zaloguj się"></input>
+          <input type='submit' className="button loginBtn" value="Zaloguj się"></input>
           <p className='loginError'>{login.error}</p>
           <Link to="/new_user"><p className="toNewUser">Załóż nowe konto</p></Link>      
           </form>   

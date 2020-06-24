@@ -1,13 +1,16 @@
 import React from "react";
-import "../styles/OrderPopup.css";
+import "../../styles/OrderPopup.css";
 import {useSelector, useDispatch} from "react-redux";
-import { DELETE_PIZZA_ORDER, DELETE_DRINK_ORDER, SET_SAUCE, SET_ORDER_ERROR, SET_ORDER_MESSAGE, SET_USER_ID, SET_INITIAL_ORDER} from "../store/order";
-import { USER_ORDER } from "../store/user";
+import { useHistory } from "react-router-dom";
+import { DELETE_PIZZA_ORDER, DELETE_DRINK_ORDER, SET_SAUCE, SET_ORDER_ERROR, SET_ORDER_MESSAGE, SET_INITIAL_ORDER} from "../../store/order";
+import { USER_ORDER } from "../../store/user";
+import Popup from "reactjs-popup";
 
 const OrderPopup = () => {
-  //pobranie store.order
+
   const order = useSelector(state => state.order);
   const user = useSelector(state => state.user);
+  let history = useHistory();
 
   //deklaracja zmiennych
   let pizzasList;
@@ -45,7 +48,7 @@ const OrderPopup = () => {
       summaryPrice += Number(el.price)
     });
 
-    //tavbela z napojami
+    //tabela z napojami
     drinksList = order.drinkOrder.map((drink,index)=> (
       <tr key={index}>
         <td>{drink.drink}</td>
@@ -82,7 +85,7 @@ const OrderPopup = () => {
   const makeOrder = async e => {
 
     if(user.logIn){
-    const response = await fetch('http://localhost:3000/api/order', {
+    const response = await fetch('https://cessarepizza.herokuapp.com/api/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -93,10 +96,10 @@ const OrderPopup = () => {
     dispatch({type:USER_ORDER, payload: body.orders})
     console.log(body)
     dispatch({type:SET_INITIAL_ORDER})
+    history.push("/user");
 
     }else{
       dispatch({type:SET_ORDER_ERROR, payload: 'Zaloguj się lub załóż nowe konto aby złożyć zamówienie'})
-      console.log("niezalogowany")
     }
   };
 
@@ -109,7 +112,12 @@ const OrderPopup = () => {
   };
 
   return(
-    <div className='modalOrder'>
+    <Popup trigger={<button className="button"> ZAMÓWIENIE </button>} modal>
+    {close => (
+      <div className='modalOrder'>
+      <a className="close" onClick={() =>close()}>
+          &times;
+        </a>
       <p className="cartBold">TWOJE ZAMÓWIENIE</p>
       <p className="cartDescript">Do każdego zamóWienia doliczamy koszt dostawy w wysokości 5zł</p>
       <table>
@@ -150,6 +158,12 @@ const OrderPopup = () => {
   <p className="loginError">{order.orderError}</p>
           </div>
     </div>
+
+    )}
+  </Popup>
+
+
+
   );
 };
 export default OrderPopup;

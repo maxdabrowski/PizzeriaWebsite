@@ -1,29 +1,29 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import "../styles/Menu.css";
+import "../../styles/Menu.css";
 import Pizza from "./Pizza";
 import Drink from "./Drink";
 import Cart from "./Cart";
 
 const Menu = () =>{ 
 
-    //pobranie stanów ze Stpra
-    const pizzas = useSelector(state => state.menu.pizzas);
-    const drinks = useSelector(state => state.menu.drinks);
+  //pobranie danych ze stora
+  const pizzas = useSelector(state => state.menu.pizzas);
+  const drinks = useSelector(state => state.menu.drinks);
   
-    // lista pizzy
-    const pizzasList = pizzas.map(onePizza => (
-      <li key={onePizza._id}>
-        <Pizza pizza={onePizza} />
-      </li>
-    ));
+  // lista pizzy
+  const pizzasList = pizzas.map(onePizza => (
+    <li key={onePizza._id}>
+      <Pizza pizza={onePizza} />
+    </li>
+  ));
 
-    // lista napojów
-    const drinksList = drinks.map(oneDrink => (
-      <li key={oneDrink._id}>
-        <Drink drink={oneDrink} />
-      </li>
-    ));
+  // lista napojów
+  const drinksList = drinks.map(oneDrink => (
+    <li key={oneDrink._id}>
+      <Drink drink={oneDrink} />
+    </li>
+  ));
 
   return (
     <div className="menu">

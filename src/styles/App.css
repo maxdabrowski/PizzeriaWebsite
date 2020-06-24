@@ -1,5 +1,7 @@
 body{
+  margin: 0;
   background-image: url("../images/pizza.jpg");
+  background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;
 }
@@ -17,7 +19,7 @@ body{
 
 header {
   width: 100%;
-  height: 400px;
+  height: 340px;
 }
 
 section {
@@ -37,4 +39,26 @@ li {
 
 a{
   text-decoration: none;
+}
+
+.imgError{
+  margin-top: 50px;
+  width: 50%;
+}
+
+@media (max-width:1024px){
+  header {
+    height: 260px;
+  }
+}
+
+@media (max-width:425px){
+  body{
+    background-image: none;
+  }
+  
+.imgError{
+  margin-top: 50px;
+  width: 80%;
+}
 }

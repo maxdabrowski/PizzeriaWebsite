@@ -1,11 +1,9 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import Popup from "reactjs-popup";
 import OrderPopup from "./OrderPopup"
 
 const Cart = () => {
 
-  //pobranie store.order
   const order = useSelector(state => state.order);
 
   //deklaracja zmiennych
@@ -50,7 +48,7 @@ const Cart = () => {
 
   return (
     <div className='cartList'>
-      <p className="cartBold">TWOJE ZAMÓWIENIE</p>
+      <p className="cartBold cartHeader">TWOJE ZAMÓWIENIE</p>
       <p className="cartDescript">Dadaj jedzenie i napoje z menu i sprawdź zamówienie</p>
       <table>
         <tbody>
@@ -64,9 +62,7 @@ const Cart = () => {
         </tbody>
       </table>
       <div className="summaryCart">
-        <Popup trigger={<p className="button">ZAMÓWIENIE</p>} modal>
-          <OrderPopup />
-        </Popup>
+        <OrderPopup />
       <p className="cartBold">SUMA: {summaryPrice} zł</p>
       </div>
       </div>

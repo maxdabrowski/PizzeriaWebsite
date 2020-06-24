@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AboutUs from "../pages/AboutUs";
-import Menu from "../pages/Menu";
+import Menu from "../pages/menu/Menu";
 import Contact from "../pages/Contact";
 import Opinion from "../pages/Opinion";
-import Login from "../pages/Login";
-import NewUser from "../pages/NewUser";
-import User from "../pages/User";
+import Login from "../pages/user/Login";
+import NewUser from "../pages/user/NewUser";
+import User from "../pages/user/User";
 import Error from "../pages/Error";
 
 const Page = () => {

@@ -7,6 +7,7 @@ import Page from "./Page";
 import { useEffect } from "react";
 import {useDispatch} from "react-redux";
 import{ADD_DRINK,ADD_PIZZA} from "../store/menu";
+import { SET_OPINIONS, SET_VOTES } from "../store/opinion";
 
 const App = () => {
 
@@ -14,7 +15,7 @@ const App = () => {
   
   //pobranie i dodanie do Stora pizzy z API 
   useEffect(()=>{
-    fetch('https://cessarepizza.herokuapp.com/menu/pizza')
+    fetch('https://cessarepizza.herokuapp.com/api/pizza')
     .then(response => {
         if (response.ok) {
           return response;
@@ -30,7 +31,7 @@ const App = () => {
 
   //pobranie i dodanie do Stora napojów z API 
   useEffect(()=>{
-    fetch('https://cessarepizza.herokuapp.com/menu/drink')
+    fetch('https://cessarepizza.herokuapp.com/api/drink')
     .then(response => {
         if (response.ok) {
           return response;
@@ -44,6 +45,38 @@ const App = () => {
       })
   });
 
+   //pobranie i dodanie do Stora opinii z API 
+  useEffect(()=>{
+    fetch('https://cessarepizza.herokuapp.com/api/opinion')
+    .then(response => {
+        if (response.ok) {
+          return response;
+        }
+        throw Error("bład wyszukiwania");
+      })
+      .then(response => {
+        return response.json()})
+      .then(data =>{
+          dispatch({type:SET_OPINIONS, payload: data})  
+      })
+  });
+
+    //pobranie i dodanie do Stora wyników głosowania z API 
+    useEffect(()=>{
+      fetch('https://cessarepizza.herokuapp.com/api/vote')
+      .then(response => {
+          if (response.ok) {
+            return response;
+          }
+          throw Error("bład wyszukiwania");
+        })
+        .then(response => {
+          return response.json()})
+        .then(data =>{
+           dispatch({type:SET_VOTES, payload: data[0]})  
+        })
+    });
+    
   return (
     <Router>
       <div className="app">

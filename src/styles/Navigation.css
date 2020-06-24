@@ -47,3 +47,67 @@ nav.main a.active {
   background-color: black;
   cursor: pointer;
 }
+
+@media (max-width:1024px){
+  .main{
+    width: 80%;
+  }
+  nav.main a {
+    font-size: 25px;
+  }
+  .loginButon{
+    padding:7px;
+  }
+
+}
+@media (max-width:768px){
+  .main{
+    width: 80%;
+  }
+  nav.main a {
+    font-size: 20px;
+  }
+  .loginButon{
+    padding:5px;
+    font-size: 15px;
+  }
+
+}
+@media (max-width:425px){
+  .navigation{
+    width: 100%;
+    display: block;
+    margin-top: 100px;
+  }
+  
+  .main ul li {
+    width:100%;
+    padding-bottom: 15px;
+    color:red
+  }
+  nav.main a:hover {
+    font-weight: bold;
+  }
+
+  .main ul {
+  margin-left: 0px;
+  padding-left: 0;
+  }
+  .loginButon{
+    width: 50%;
+    font-size: 18px;
+    margin: auto;
+    color: black;
+    border-radius: 5px;
+    padding:10px;
+    border: 1px solid black;
+  }
+  .loginButon:hover{
+    opacity: 1;
+    background-color: rgb(236, 236, 236);
+  }
+  nav.main a {
+    color: #A21310;
+  }
+}
+

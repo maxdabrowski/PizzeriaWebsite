@@ -1,26 +1,36 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
-import "../styles/NewUser.css";
-import Popup from "reactjs-popup";
+import "../../styles/User.css";
 import UserDeletePopup from "./UserDeletePopup"
-import { LOGOUT_USER } from "../store/user";
-import { SET_USER_TYPE } from "../store/newUserValues";
+import UserOrder from "./UserOrder"
+import { LOGOUT_USER } from "../../store/user";
+import { SET_USER_TYPE, SET_INITIAL_USER } from "../../store/newUserValues";
 
 const User= () => {
   
   const dispatch = useDispatch();
   let history = useHistory();
   const user = useSelector(state => state.user.loginUser);
+  const userOrders = useSelector(state => state.user.orderUser);
 
+  // lista zamówień użytkownika
+  const orderList = userOrders.map(oneOrder => (
+    <li key={oneOrder._id}>
+      <UserOrder order={oneOrder} />
+    </li>
+  ));
+
+  //zmiana typu użytkownika do zmiany formularza nowu użytkownik czy zmiana danych
   const changeUserData = async e => {
-    console.log('changeUserData');
     dispatch({type: SET_USER_TYPE, payload:"CHANGE" })
     history.push("/new_user");
   };
   
+  //wylogowanie się użytkownika
   const logOut = ()  => {
     dispatch({type: LOGOUT_USER})
+    dispatch({type: SET_INITIAL_USER})
     history.push("/");
   };
   
@@ -44,7 +54,7 @@ const User= () => {
             </tr>
             <tr>
               <td>Adres:</td>
-              <td>{user.town +' '+ user.street +' '+ user.streetNumber}</td>
+              <td>{user.town +', ul. '+ user.street +' '+ user.streetNumber}</td>
             </tr>
             <tr>
               <td>Adres email:</td>
@@ -58,13 +68,11 @@ const User= () => {
         </table>
         <button className="button" onClick={() => logOut()}>Wyloguj</button>
         <button className="button"onClick={() => changeUserData()}>Zmień dane</button>
-        <Popup trigger={<p className="toNewUser">Usuń konto</p>}  modal>
           <UserDeletePopup />
-        </Popup>
       </div>
       <div className="userOrder">
       <h1>Historia zamówień</h1>
-        <p>Pobranie i wyświetlenie danych o zamówieniach użytkownika</p>
+      <ul>{orderList}</ul>
       </div>    
     </div>
   );

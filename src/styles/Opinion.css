@@ -1,4 +1,62 @@
 .opinion{
-width:80%
+width:90%;
+margin: 0 auto;
+text-align:center
+
+}
+.stars{
+  width:160px;
+  display:flex;
+  margin: 0 auto
 }
 
+.orderTextarea{
+  width: 60%;
+  height: 40px;
+}
+
+.opinionBtn{
+  width: 200px;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 7px;
+  border: none;
+}
+
+.opinionList ul{
+  padding: 0px;
+}
+
+.opinionList ul li{
+  width: 350px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.opinionData{
+  font-size: 16px;
+  margin: 0px;
+}
+
+.opinionText{
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 21px;
+}
+
+.opinionUser{
+  font-weight: bold;
+  margin: 0px;
+  text-align: right;
+}
+
+@media (max-width:425px){
+  .orderTextarea{
+    width: 90%;
+  }
+  .opinionList ul li{
+    width: 90%;
+  }
+}

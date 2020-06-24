@@ -1,32 +1,18 @@
 import React from "react";
-import "../styles/NewUser.css";
+import "../../styles/User.css";
 import {useDispatch,useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
-import SimpleReactValidator from 'simple-react-validator';
-import { LOGIN_USER } from "../store/user";
-import {SET_ORDER_ERROR} from "../store/order";
+import { LOGIN_USER } from "../../store/user";
+import {SET_ORDER_ERROR} from "../../store/order";
 import { SET_USER_NAME, SET_USER_PASSWORD, SET_USER_FIRST_NAME,SET_USER_LAST_NAME,
   SET_USER_TOWN,SET_USER_STREET, SET_USER_STREET_NUMBER,SET_USER_TEL,SET_USER_MAIL,
-  NAME_AVAILABLE, SET_USER_AGREE, SET_INITIAL_USER, SET_USER_CHANGE_FORM} from "../store/newUserValues";
+  NAME_AVAILABLE, SET_USER_AGREE, SET_INITIAL_USER, SET_USER_CHANGE_FORM, SET_TRY_SEND} from "../../store/newUserValues";
 
   const NewUser = () => {
 
-  // biblioteka do walidacji 
-  let validator = new SimpleReactValidator({
-
-    autoForceUpdate: this,
-    className: 'text-danger',
-    messages: {
-      email: 'That is not an email.',
-      default: "Womp! That's not right!"
-    },
-
-  });
-
   let history = useHistory();
   const dispatch = useDispatch();
-  /*const dispatch2 = useDispatch();*/
- 
+
   let user = useSelector(state => state.newUserValues);
   let loginUser = useSelector(state => state.user.loginUser);
   let type = user.type;
@@ -72,16 +58,16 @@ import { SET_USER_NAME, SET_USER_PASSWORD, SET_USER_FIRST_NAME,SET_USER_LAST_NAM
     }else if(type ==='agree'){
       const checkbox = document.getElementById('agreeUser')
       if(checkbox.checked){
-        dispatch({type: SET_USER_AGREE, payload: true})
-      }else{
         dispatch({type: SET_USER_AGREE, payload: false})
+      }else{
+        dispatch({type: SET_USER_AGREE, payload: true})
       }
     }
   };
 
   //sprawdzenie czy nazwa użytkownika nie jest już zajęta
   const userAvailable = async e => {
-    const response = await fetch('http://localhost:3000/api/user_check', {
+    const response = await fetch('https://cessarepizza.herokuapp.com/api/user_check', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -96,8 +82,19 @@ import { SET_USER_NAME, SET_USER_PASSWORD, SET_USER_FIRST_NAME,SET_USER_LAST_NAM
   //dodawanie nowego użytkownika
   const UserAdd = async e => {
     e.preventDefault();
-    if (validator.allValid() && user.agree && user.nameAvailable) {
-      const response = await fetch('http://localhost:3000/api/user', {
+    dispatch({type: SET_TRY_SEND}) 
+    if (!user.agree &&
+        !user.nameError &&
+        !user.passwordError &&
+        !user.firstNameError &&
+        !user.lastNameError &&
+        !user.townError &&
+        !user.streetError &&
+        !user.streetNumberError &&
+        !user.telError &&
+        !user.mailError &&      
+      user.nameAvailable) {
+      const response = await fetch('https://cessarepizza.herokuapp.com/api/user', {
 
         method: 'POST',
         headers: {
@@ -106,27 +103,12 @@ import { SET_USER_NAME, SET_USER_PASSWORD, SET_USER_FIRST_NAME,SET_USER_LAST_NAM
         body: JSON.stringify({ userToSend }),
       });
       const body = await response.json();
-      dispatch({type: LOGIN_USER, payload:body[0]})
+      dispatch({type: LOGIN_USER, payload:body})
       dispatch({type: SET_INITIAL_USER})  
       dispatch({type:SET_ORDER_ERROR, payload: ''})    
       history.push("/menu");
-    } else {
-
-      validator.showMessageFor('name');
-      validator.showMessages();
-      console.log('showMessages')
-      //kurwa jebane wiadomości się nie wyświetlają, ale walidacja jest
     }
   };
-
-
-  
-
-
-
-
-
-
   return(
     <div className='user'>
       <form className='form' onSubmit={(e) => UserAdd(e)} >
@@ -134,57 +116,60 @@ import { SET_USER_NAME, SET_USER_PASSWORD, SET_USER_FIRST_NAME,SET_USER_LAST_NAM
         <div className='formRow'>
           <label>Nazwa użytkownika:</label>
           <input type='text' value={user.name} onChange={(e) => userHandle(e,'name')} onBlur={(e) => userAvailable(e)}></input>
-          {validator.message('name', user.name, 'required')}
-          {user.nameAvailable?<p></p>:<p className='loginError'>Nazwa użytkowka jest już istnieje, wybierz inną</p>}    
+          {user.nameError && user.trySend ?<p className='formError'>nazwa użytkownika powinna składać się z liter</p>:<p></p>}
+          {user.nameAvailable? <p></p> :<p className='formError'>podana nazwa użytkownika już istnieje, wybierz inną</p>}    
         </div>
         :<p></p>}
         <div className='formRow'>
           <label>Hasło:</label>
-          <input type='text' value={user.password} onChange={(e) => userHandle(e,'password')}  onBlur={() => validator.showMessageFor('name')}></input>
-          {validator.message('password', user.password, 'required')}
+          <input type='text' value={user.password} onChange={(e) => userHandle(e,'password')}></input>
+          {user.passwordError && user.trySend ?<p className='formError'>minimum 8 znaków, w tym liczba oraz mała i duża litera</p>:<p></p>}
         </div>
         <div className='formRow'>
           <label>Imię:</label>
           <input type='text'value={user.firstName} onChange={(e) => userHandle(e,'firstName')}></input>
-          {validator.message('firstName', user.firstName, 'required')}
+          {user.firstNameError && user.trySend ?<p className='formError'>imię powinno składać się z liter</p>:<p></p>}
         </div>
         <div className='formRow'>
           <label>Nazwisko:</label>
           <input type='text' value={user.lastName} onChange={(e) => userHandle(e,'lastName')}></input>
-          {validator.message('lastName', user.lastName, 'required')}
+          {user.lastNameError && user.trySend ?<p className='formError'>nazwisko powinno składać się z liter</p>:<p></p>}
         </div>
         <div className='formRow'>
           <label>Miejscowość:</label>
           <input type='text' value={user.town} onChange={(e) => userHandle(e,'town')}></input>
-          {validator.message('town', user.town, 'required')}
+          {user.townError && user.trySend ?<p className='formError'>miejscowość powinna składać się z liter</p>:<p></p>}
         </div>
         <div className='formRow'>
           <label>Ulica:</label>
           <input type='text' value={user.street} onChange={(e) => userHandle(e,'street')}></input>
-          {validator.message('street', user.street, 'required')}
+          {user.streetError && user.trySend ?<p className='formError'>nazwa ulicy powinna składać się z liter</p>:<p></p>}
         </div>
         <div className='formRow'>
-          <label>Numer domu (oraz numer miszkania):</label>
+          <label>Numer domu (oraz numer mieszkania):</label>
           <input type='text' value={user.streetNumber} onChange={(e) => userHandle(e,'streetNumber')}></input>
-          {validator.message('streetNumber', user.streetNumber, 'required')}
+          {user.streetNumberError && user.trySend ?<p className='formError'>podaj numer domu,nr. meszkania dopisz po przecinku</p>:<p></p>}
         </div>
         <div className='formRow'>
           <label>Numer telefonu:</label>
           <input type='text' value={user.tel} onChange={(e) => userHandle(e,'tel')}></input>
-          {validator.message('tel', user.tel, 'required')}
+          {user.telError && user.trySend ?<p className='formError'>numer telefonu powinien składać się z 9 liczb</p>:<p></p>}
         </div>
         <div className='formRow'>
           <label>Adres email:</label>
           <input type='text' value={user.mail} onChange={(e) => userHandle(e,'email')}></input>
-          {validator.message('mail', user.mail, 'required')}
+          {user.mailError && user.trySend?<p className='formError'>podaj poprawny adres email</p>:<p></p>}
         </div>
         {type==="NEW"?
         <div className="formRow">
-          <input id="agreeUser" type="checkbox" onChange={(e) => userHandle(e,'agree')}></input>
-          <span>wyrażam zgodę na przetwarzanie moich danych osobowych </span>
+          <div className="agree">
+            <input id="agreeUser" type="checkbox" onChange={(e) => userHandle(e,'agree')}></input>
+            <span className="checkDescript">wyrażam zgodę na przetwarzanie moich danych osobowych </span>
+          </div>
+          {user.agree && user.trySend?<p className='formError'>musisz wyrazić zgodę</p>:<p></p>}
         </div>
         :<p></p>}
-          <input type='submit' className="button" value={type==="NEW"?"Załóż nowe konto":"Zmień dane"}></input>
+          <input type='submit' className="button loginBtn" value={type==="NEW"?"Załóż nowe konto":"Zmień dane"}></input>
       </form>  
     </div>
   );

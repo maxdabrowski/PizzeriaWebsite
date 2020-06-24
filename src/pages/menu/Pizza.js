@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import { ADD_PIZZA_ORDER } from "../store/order";
+import { ADD_PIZZA_ORDER } from "../../store/order";
 
 const Pizza = props => {
 
@@ -13,9 +13,9 @@ const Pizza = props => {
   ingredients.forEach(el => {
     ingredientsString = ingredientsString + el + ', ' 
   });
-  ingredientsString =ingredientsString + ' oregano';
+  ingredientsString = ingredientsString + ' oregano';
 
-  //dodawanie zamówienia do Store order.PizzaOrder
+  //dodawanie zamówienia do Store 
   const addPizzaOrder = (pizzaName,pizzaSize,pizzaPrice) =>{
     const newPizzaOrder = {
       pizza: pizzaName,

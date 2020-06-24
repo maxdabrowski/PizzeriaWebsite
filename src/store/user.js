@@ -2,8 +2,6 @@ export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const USER_ORDER = "USER_ORDER";
 
-
-
 const initialState = {
   loginUser : {},
   orderUser: [],
@@ -14,7 +12,7 @@ export default (state = initialState, action) => {
   switch(action.type){
     case LOGIN_USER: {
       const newloginUser = action.payload.user[0];
-      const newUserOrder = action.payload.orders;
+      const newUserOrder = action.payload.orders.reverse();
       return{
         ...state,
         loginUser : newloginUser,
@@ -33,7 +31,7 @@ export default (state = initialState, action) => {
       const newUserOrder = action.payload;
       return{
         ...state,
-        orderUser : newUserOrder,
+        orderUser : newUserOrder.reverse(),
       };
     }
     default:{

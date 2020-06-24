@@ -1,0 +1,148 @@
+.newUser{
+  width:80%;
+  margin: auto;
+  display: flex
+}
+
+.user{
+  display: flex;
+  margin: auto;
+}
+.user form{
+  margin: auto;
+}
+
+.user input{
+  width: 90%;
+
+}
+
+.userData{
+  width: 50%; 
+}
+
+.userOrder{
+  width:50%
+}
+
+ .userTable td:last-child{
+  float: left;;
+  text-align: left;
+}
+
+.userTable tr{
+  height: 1.8em;
+}
+
+.userData button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 7px;
+}
+
+.element table{
+  margin: 0;
+  width: 100%;
+}
+.element td:last-child{
+  float: left;;
+  text-align: left;
+}
+
+.realized{
+  color: rgb(5, 80, 5);
+}
+.inRealized{
+  color: #A21310;
+}
+
+.formError{
+  color: #A21310;
+  font-size: 14px;
+  margin-top: 0px;
+  text-align: left;
+}
+
+#agreeUser{
+  width:5%;
+}
+
+.checkDescript{
+  display: block;
+  width: 95%;
+  font-size: 15px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.agree{
+  display: flex;
+}
+
+@media (max-width:1024px){
+  .newUser{
+    width:90%;
+  }
+  .userData{
+    width: 40%;
+    
+  }
+  .userOrder{
+    width:60%
+  }  
+}
+
+@media (max-width:768px){
+  .newUser{
+    display: block;
+  }
+  .userData{
+    width: 100%;
+    
+  }
+  .userOrder{
+    width:100%
+  }
+  .userData h1{
+    font-size: 20px; 
+  }  
+
+  .userOrder h1{
+    font-size: 20px; 
+  } 
+
+  .userOrder ul{
+    padding: 0px;
+  }
+}
+
+@media (max-width:425px){ 
+  .newUser{
+    display: block;
+  }
+  .userData{
+    width: 100%;
+    
+  }
+  .userOrder ul{
+    padding: 0px;
+  }
+  .userData h1{
+    font-size: 20px; 
+  }  
+
+  .userOrder h1{
+    font-size: 20px; 
+  } 
+
+  table tr td{
+    padding: 0.7em;
+    font-size: 16px; 
+  }
+  .user input{
+    width:94%;
+    margin: 0;
+  }
+  
+}
+

@@ -1,13 +1,13 @@
 import React from "react";
 import {useDispatch} from "react-redux";
-import { ADD_DRINK_ORDER } from "../store/order";
+import { ADD_DRINK_ORDER } from "../../store/order";
 
 const Drink = props => {
 
   const{name, size, price}= props.drink;
   const dispatch = useDispatch();
 
-  //dodawanie zamówienia do Store order.DrinkOrder
+  //dodawanie zamówienia do Store
   const addDrinkOrder = (drinkName,drinkSize,drinkPrice) =>{
     const newDrinkOrder = {
       drink: drinkName,

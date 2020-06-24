@@ -12,6 +12,7 @@ export const SET_USER_TYPE = "SET_USER_TYPE";
 export const SET_INITIAL_USER = "SET_INITIAL_USER";
 export const NAME_AVAILABLE = "NAME_AVAILABLE";
 export const SET_USER_CHANGE_FORM = "SET_USER_CHANGE_FORM";
+export const SET_TRY_SEND = "SET_TRY_SEND";
 
 
 const initialState = {
@@ -24,66 +25,106 @@ const initialState = {
   streetNumber: '',
   tel:'',
   mail:'',
-  agree: false,
+  agree: true,
   nameAvailable: true,
+  nameError:true,
+  passwordError:true,
+  firstNameError:true,
+  lastNameError:true,
+  townError:true,
+  streetError:true,
+  streetNumberError:true,
+  telError:true,
+  mailError:true,
+  trySend: false,
   type: 'NEW',
+
 };
 
 export default (state = initialState, action) => {
   switch(action.type){
     case SET_USER_NAME: {
       const setUserName = action.payload;
+      const reg = new RegExp("^[a-zA-Ząćęłńóśżź]+$");
+      const error = !reg.test(action.payload);
       return{
         ...state,
-        name : setUserName
+        name : setUserName,
+        nameError: error,
       };
     } case SET_USER_PASSWORD: {
       const setUserPassword = action.payload;
+      const reg = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
+      const error = !reg.test(action.payload);
       return{
         ...state,
         password: setUserPassword,
+        passwordError: error,
       };
     } case SET_USER_FIRST_NAME: {
       const setUserFirstName = action.payload;
+      const reg = new RegExp("^[a-zA-Ząćęłńóśżź]+$");
+      const error = !reg.test(action.payload);
       return{
         ...state,
         firstName: setUserFirstName,
+        firstNameError: error,
       };
     } case SET_USER_LAST_NAME: {
       const setUserLastName = action.payload;
+      const reg = new RegExp("^[a-zA-Ząćęłńóśżź-]+$");
+      const error = !reg.test(action.payload);
       return{
         ...state,
         lastName: setUserLastName,
+        lastNameError: error,
       };
     } case SET_USER_TOWN: {
       const setUserTown = action.payload;
+      const townReplace = action.payload.replace(" ","_");
+      const reg = new RegExp("^[a-zA-Ząćęłńóśżź._-]+$");
+      const error = !reg.test(townReplace);
       return{
         ...state,
         town: setUserTown,
+        townError: error,
       };
     } case SET_USER_STREET: {
       const setUserStreet = action.payload;
+      const streetReplace = action.payload.replace(" ","_");
+      const reg = new RegExp("^[a-zA-Ząćęłńóśżź._-]+$");
+      const error = !reg.test(streetReplace);
       return{
         ...state,
         street: setUserStreet,
+        streetError: error,
       };
     } case SET_USER_STREET_NUMBER: {
       const setUserStrretNumber = action.payload;
+      const reg = new RegExp("^[0-9/,]+$");
+      const error = !reg.test(action.payload);
       return{
         ...state,
         streetNumber: setUserStrretNumber,
+        streetNumberError: error,
       };
     } case SET_USER_TEL: {
       const setUserTel= action.payload;
+      const reg = new RegExp("[0-9]{9}");
+      const error = !reg.test(action.payload);
       return{
         ...state,
         tel: setUserTel,
+        telError: error,
       };
     } case SET_USER_MAIL: {
       const setUserMail = action.payload;
+      const reg = new RegExp("^[0-9a-z_.-]+@[0-9a-z.-]+\.[a-z]{2,3}$");
+      const error = !reg.test(action.payload);
       return{
         ...state,
         mail: setUserMail,
+        mailError: error
       };
     } case SET_USER_AGREE: {
       const setUserMail = action.payload;
@@ -117,8 +158,26 @@ export default (state = initialState, action) => {
         streetNumber: '',
         tel:'',
         mail:'',
-        agree: false,
-        nameAvailable: true
+        agree: true,
+        nameAvailable: true,
+        nameError:true,
+        passwordError:true,
+        firstNameError:true,
+        lastNameError:true,
+        townError:true,
+        streetError:true,
+        streetNumberError:true,
+        telError:true,
+        mailError:true,
+        trySend: false,
+        type: 'NEW',
+      };
+    } 
+
+    case SET_TRY_SEND: {
+      return{
+        ...state,
+        trySend: true,
       };
     } 
     case SET_USER_CHANGE_FORM: {
@@ -134,9 +193,19 @@ export default (state = initialState, action) => {
         streetNumber: userChange.streetNumber,
         tel:userChange.tel,
         mail:userChange.mail,
-        agree: true,
+        agree: false,
         nameAvailable: true,
-        type: 'UPDATE',
+        nameError:false,
+        passwordError:false,
+        firstNameError:false,
+        lastNameError:false,
+        townError:false,
+        streetError:false,
+        streetNumberError:false,
+        telError:false,
+        mailError:false,
+        trySend: false,
+        type: 'UPDATE'
       };
     } 
     default:{

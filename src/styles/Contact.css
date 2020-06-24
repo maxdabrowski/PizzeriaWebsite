@@ -3,7 +3,7 @@ width: 33%;
 }
 .contact{
   display: flex;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
 } 
 
@@ -18,11 +18,35 @@ table{
   margin: 0 auto;
 }
 table tr td{
-  padding-right: 30px;
+  padding: 0.5em;
   text-align: right;
 }
 
 iframe{
   width: 100%;
   height: 450px;
+}
+
+@media (max-width:1024px){
+  .aboutUs{
+    font-size: 15px;
+  }
+}
+
+@media (max-width:768px){
+  .contact div {
+    width: 100%;
+    }
+    .contact{
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+    } 
+}
+
+@media (max-width:425px){
+  .contact div h1{
+    font-size: 22px;
+
+  }
 }
