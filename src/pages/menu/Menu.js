@@ -39,7 +39,7 @@ const Menu = () =>{
           <p className="headerList bold" id="drinkList" >MENU NAPOJE</p>
             <ul>{drinksList}</ul>
         </div>
-        <div className="cart">
+        <div className="cart" id="cart">
           <Cart/>
         </div>
       </div>

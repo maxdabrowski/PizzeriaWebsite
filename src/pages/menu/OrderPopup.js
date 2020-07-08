@@ -94,7 +94,6 @@ const OrderPopup = () => {
     });
     const body = await response.json();
     dispatch({type:USER_ORDER, payload: body.orders})
-    console.log(body)
     dispatch({type:SET_INITIAL_ORDER})
     history.push("/user");
 

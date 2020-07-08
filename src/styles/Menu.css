@@ -35,10 +35,11 @@
   padding: 0;
 }
 
-.cart{
+#cart{
+  position: absolute;
+  right: 3rem;
   width: 40%;
 }
-
 .bold{
   font-weight: bold;
   text-decoration: underline;
@@ -176,6 +177,9 @@ cursor: pointer;
   .popup-content{
     width: 70% !important;
   }
+  #cart{
+    width: 370px;
+  }
   
 }
 
@@ -189,7 +193,7 @@ cursor: pointer;
   .menuList{
     width: 50%;
   }
-  .cart{
+  #cart{
     width: 50%;
   }
   .elementName{
@@ -197,6 +201,9 @@ cursor: pointer;
   }
   .popup-content{
     width: 80% !important;
+  }
+  #cart{
+    width: 300px;
   }
 
 }
@@ -211,9 +218,11 @@ cursor: pointer;
   .menuList{
     width: 100%;
   }
-  .cart{
+  #cart{
     position: fixed;
-    bottom:0;
+    bottom:0 !important;
+    right: 0 !important;
+    top:none;
     width: 100%;
     background-color: white;
   }

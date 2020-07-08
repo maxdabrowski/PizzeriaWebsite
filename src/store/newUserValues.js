@@ -119,7 +119,7 @@ export default (state = initialState, action) => {
       };
     } case SET_USER_MAIL: {
       const setUserMail = action.payload;
-      const reg = new RegExp("^[0-9a-z_.-]+@[0-9a-z.-]+\.[a-z]{2,3}$");
+      const reg = new RegExp("^[0-9a-z_.-]+@[0-9a-z.-]+[a-z]{2,3}$");
       const error = !reg.test(action.payload);
       return{
         ...state,
